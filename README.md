@@ -23,13 +23,15 @@
 
 # MVP
 
- •users being able to search their area for resturants
+ * users being able to search their area for resturants
 
- •users will be able to leave comments in our forum area 
-  that everyone can delete and edit
+ * users will be able to leave comments in our forum area that everyone can delete and edit
 
- •being able to create pins that are associated with your 
-  search on a map
+ * being able to create pins that are associated with your search on a map
+
+ * show page with comments 
+
+ * Linking reviews and raitings 
 
 # Contributors
  
