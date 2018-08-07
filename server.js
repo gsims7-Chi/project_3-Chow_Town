@@ -4,10 +4,22 @@ const router     = express.Router();
 const bodyParser = require('body-parser');
 const cors       = require('cors');
 const session    = require('express-session');
-
-
 require('./db/db');
 
+// middle ware
+
+app.use(session({
+  secret: 'munin',
+  resave: false,
+  saveUninitialized: false
+}))
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+// controllers
+const searchController = require('./Controllers/search');
+
+app.use('/search', searchController)
 
 
 
