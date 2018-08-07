@@ -6,6 +6,8 @@ const session        = require('express-session');
 const methodOverride = require('method-override');
 
 
+require('./db/db')
+
 // middle ware
 
 app.use(session({

@@ -39,14 +39,27 @@ router.post('/', async (req, res) => {
 		console.log('--------------Search---------------')
 		console.log(foundSearch.body, 'this is foundSearch')
 		
+		// TODO: write code figure out of any of the results have reviews
+		// --->look thru reviews in db and see if any of them have a restaurant id that matches any
+		// of the IDs in foundSearch
+		// you may need to construct the response by filtering or manually adding restaurants to an o
+		// object in a loop
 
-		res.send(foundSearch.body)
+		res.json(foundSearch.body)
 
 	} catch(err) {
 		console.log(err, ' this is an error in searchController that is trying to fine routes')
 		res.send('it didnt work')
 	}
 })
+
+// show route for a particular restaurant
+	// get restaurant data from zomato using zid --- ajax call
+	// get reivews for this resaurant from database -- mongoose query
+	// build a JSON response including both of these things
+
+
+
 
 
 
