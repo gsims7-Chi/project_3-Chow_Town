@@ -15,7 +15,6 @@ app.use(session({
 }))
 
 // Set up cors middleware so any client can make a request to the server
-app.use('/search', searchController)
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
@@ -30,8 +29,11 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // require the controller after the middleware
-const searchController = require('./Controllers/search');
+const reviewController = require('./controllers/reviewController')
+const searchController = require('./controllers/searchController');
 const authController = require('./controllers/authController');
+app.use('/review', reviewController)
+app.use('/search', searchController)
 app.use('/auth', authController);
 
 

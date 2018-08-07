@@ -16,7 +16,8 @@ const superagent = require('superagent')
 
 router.post('/', async (req, res) => {
 	try {
-		const foundCity = await superagent('https://developers.zomato.com/api/v2.1/locations?query=dallas')
+		const City = req.body.city
+		const foundCity = await superagent('https://developers.zomato.com/api/v2.1/locations?query=' + City)
 		.set('user-key', '75694589a46d1003747fa22c350d5e2c')
 		console.log('-------------------RESPONSE----------------------')
 		console.log('-------------------RESPONSE----------------------')
