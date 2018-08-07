@@ -1,9 +1,10 @@
-const express    = require('express');
-const app        = express();
+const express        = require('express');
+const app            = express();
 // const router     = express.Router(); //i dont think we need this line here --> note from jared<--
-const bodyParser = require('body-parser');
-const cors       = require('cors');
-const session    = require('express-session');
+const bodyParser     = require('body-parser');
+const cors           = require('cors');
+const session        = require('express-session');
+const methodOverride = require('method-override');
 
 require('./db/db');
 
@@ -16,6 +17,7 @@ app.use(session({
 // Set up cors middleware so any client can make a request to the server
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(methodOverride('_method'));
 
 const corsOptions = {
   origin: 'http://localhost:3000', //specify what site can use our API
@@ -24,11 +26,11 @@ const corsOptions = {
 }
 
 // allow other servers to talk to our server
-app.use(cors(corseOptions));
+app.use(cors(corsOptions));
 
 // require the controller after the middleware
 const authController = require('./controllers/authController');
-
+app.use('/auth', authController);
 
 
 app.listen(9000, () => {
