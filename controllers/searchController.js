@@ -10,9 +10,9 @@ const superagent = require('superagent')
 	// api call to zomato: get location id
 	// api call to zomato: see if you can get restaurants from zomato search using the location ID
 
-	// send a json response 
+	// send a json response
 
-// finds resturaunts
+// finds resturaunts: index route
 
 router.post('/', async (req, res) => {
 	try {
@@ -27,18 +27,18 @@ router.post('/', async (req, res) => {
 		console.log('-------------------RESPONSE----------------------')
 		console.log('-------------------RESPONSE----------------------')
 		console.log(foundCity.body.location_suggestions[0].entity_id)
-		
+
 
 		const entityId = foundCity.body.location_suggestions[0].entity_id
 
 
 		const entityType = foundCity.body.location_suggestions[0].entity_type
-		
+
 		const foundSearch = await superagent(`https://developers.zomato.com/api/v2.1/search?entity_id=${entityId}&entity_type=${entityType}`)
 		.set('user-key', '75694589a46d1003747fa22c350d5e2c')
 		console.log('--------------Search---------------')
 		console.log(foundSearch.body, 'this is foundSearch')
-		
+
 		// TODO: write code figure out of any of the results have reviews
 		// --->look thru reviews in db and see if any of them have a restaurant id that matches any
 		// of the IDs in foundSearch
@@ -51,6 +51,12 @@ router.post('/', async (req, res) => {
 		console.log(err, ' this is an error in searchController that is trying to fine routes')
 		res.send('it didnt work')
 	}
+})
+
+// show route
+
+router.get('/', (req, res) => {
+	
 })
 
 // show route for a particular restaurant
