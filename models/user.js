@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema({
   state: String,
   zip: Number,
   phone: Number,
-  email: String,
+  email: String
 });
 
 

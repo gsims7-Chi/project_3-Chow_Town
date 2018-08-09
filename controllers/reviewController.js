@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 // show
 router.get('/:id', async (req, res) => {
 	try{
-		const findReview = await Review.findOne({'entityId': req.params.entity_id)
+		const findReview = await Review.findOne({'entityId': req.params.entity_id})
 		res.json(findReview)
 	}catch(err){
 		console.log(err, ' this is an error in the show route of review')
