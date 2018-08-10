@@ -22,7 +22,7 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(methodOverride('_method'));
 
 const corsOptions = {
-  origin: '*', //specify what site can use our API
+  origin: 'https://chow-town.herokuapp.com/', //specify what site can use our API
   credentials: true,
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
