@@ -17,8 +17,8 @@ app.use(session({
 }))
 
 // Set up cors middleware so any client can make a request to the server
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(methodOverride('_method'));
 
 const corsOptions = {
