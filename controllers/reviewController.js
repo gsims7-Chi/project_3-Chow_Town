@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
 // index
 router.get('/', async (req, res) => {
 	try {
-		const findReview = await Review.find({'entityId': req.params.entity_id})
+		const findReview = await Review.find({'resId': req.params.res_id})
 		// const foundResturantId = await
 
 		res.json(findReview)
@@ -31,7 +31,8 @@ router.get('/', async (req, res) => {
 // show
 router.get('/:id', async (req, res) => {
 	try{
-		const findReview = await Review.findOne({'entityId': req.params.entity_id})
+
+		const findReview = await Review.findOne({'resId': req.params.res_id})
 		res.json(findReview)
 	}catch(err){
 		console.log(err, ' this is an error in the show route of review')
@@ -42,7 +43,7 @@ router.get('/:id', async (req, res) => {
 // update
 router.put('/:id', async (req, res) => {
 	try{
-		const updatedReview = await Review.findOneAndUpdate({'entityId': req.params.entity_id}, req.body, {new: true});
+		const updatedReview = await Review.findOneAndUpdate({'resId': req.params.res_id}, req.body, {new: true});
 		res.json(updatedReview)
 	}catch(err){
 		console.log(err, ' this is an error in the update route of the review controller');
@@ -56,7 +57,7 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req,res) => {
 	try{
-			const deletedReview = await Review.findOneAndRemove({'entityId': req.params.entity_id})
+			const deletedReview = await Review.findOneAndRemove({'resId': req.params.res_id})
 			res.json(deletedReview)
 		}catch(err){
 			console.log(err, ' this is an error at the destroy route in review controller');

@@ -5,7 +5,7 @@ const reviewSchema = new mongoose.Schema({
 	review: String,
 	rating: Number,
 	username: String,
-	entityId: Number
+	resId: Number
 })
 
 

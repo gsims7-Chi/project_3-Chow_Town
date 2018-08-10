@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const superagent = require('superagent')
+const superagent = require('superagent');
+const Review = require('../models/review');
 // const Search = require('../models/Search');
 
 
@@ -18,7 +19,7 @@ router.post('/', async (req, res) => {
 	try {
 		const City = req.body.city
 		const foundCity = await superagent('https://developers.zomato.com/api/v2.1/locations?query=' + City)
-		.set('user-key', '75694589a46d1003747fa22c350d5e2c')
+		.set('user-key', '7250981833e230c0e52b1280f427f37b ')
 		console.log('-------------------RESPONSE----------------------')
 		console.log('-------------------RESPONSE----------------------')
 
@@ -35,7 +36,7 @@ router.post('/', async (req, res) => {
 		const entityType = foundCity.body.location_suggestions[0].entity_type
 
 		const foundSearch = await superagent(`https://developers.zomato.com/api/v2.1/search?entity_id=${entityId}&entity_type=${entityType}`)
-		.set('user-key', '75694589a46d1003747fa22c350d5e2c')
+		.set('user-key', '7250981833e230c0e52b1280f427f37b ')
 		console.log('--------------Search---------------')
 		console.log(foundSearch.body, 'this is foundSearch')
 
@@ -55,15 +56,30 @@ router.post('/', async (req, res) => {
 
 // show route
 
-router.get('/', (req, res) => {
-	
+router.get('/:id', async(req, res) => {
+	try{
+		const resId = req.params.id
+		const showRestaurant = await superagent(`https://developers.zomato.com/api/v2.1/restaurant?res_id=${resId}`)
+		.set('user-key', '7250981833e230c0e52b1280f427f37b ');
+		const foundReviews = await Review.find({'resId': req.params.id})
+		console.log(showRestaurant, 'this is resturaunts');
+		console.log(foundReviews, ' this is the reviews');
+		let data = {
+			showRestaurant: showRestaurant,
+			foundReviews: foundReviews
+		}
+		res.json(data)
+}catch(err){
+	console.log(err, ' this is an error in the show route of the search controller');
+	res.json(err)
+}
+
+	// show route for a particular restaurant
+		// get restaurant data from zomato using zid --- ajax call
+		// get reviews for this resaurant from database -- mongoose query
+		// build a JSON response including both of these things
+
 })
-
-// show route for a particular restaurant
-	// get restaurant data from zomato using zid --- ajax call
-	// get reivews for this resaurant from database -- mongoose query
-	// build a JSON response including both of these things
-
 
 
 
