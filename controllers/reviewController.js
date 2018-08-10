@@ -31,6 +31,7 @@ router.get('/', async (req, res) => {
 // show
 router.get('/:id', async (req, res) => {
 	try{
+
 		const findReview = await Review.findOne({'resId': req.params.res_id})
 		res.json(findReview)
 	}catch(err){

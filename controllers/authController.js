@@ -2,7 +2,12 @@ const express = require('express');
 const router  = express.Router();
 const User    = require('../models/user');
 const bcrypt  = require('bcrypt');
-
+router.use((req, res, next) => {
+  console.log("")
+  console.log("heyyyyyyyyyyyy");
+  console.log("")
+  next()
+})
 
 // login form
 router.get('/login', async (req, res) => {
@@ -94,6 +99,11 @@ router.post('/login', (request, response) => {
       });
     }
   });
+})
+
+router.post('/register', (request, response) => {
+  const password = request.body.password;
+  const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 
   // PREVENT DUPE USERNAMES
   // if a user exists in the db with the desired username
@@ -148,7 +158,7 @@ router.get('/profile', (request, response) => {
       userData: foundUser,
       username: request.session.username,
       loggedIn: request.session.loggedIn
-      });
+    });
   });
 });
 
