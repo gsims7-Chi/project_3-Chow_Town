@@ -4,6 +4,7 @@ const bodyParser     = require('body-parser');
 const cors           = require('cors');
 const session        = require('express-session');
 const methodOverride = require('method-override');
+const PORT = process.env.PORT || 9000;
 
 
 require('./db/db')
@@ -22,7 +23,7 @@ app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 
 const corsOptions = {
-  origin: 'http://localhost:3000', //specify what site can use our API
+  origin: '*', //specify what site can use our API
   credentials: true,
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
@@ -39,6 +40,6 @@ app.use('/search', searchController)
 app.use('/auth', authController);
 
 
-app.listen(9000, () => {
+app.listen(PORT, () => {
 	console.log("I'm listening on port 9000")
 })
