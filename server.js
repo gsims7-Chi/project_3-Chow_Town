@@ -4,7 +4,6 @@ const bodyParser     = require('body-parser');
 const cors           = require('cors');
 const session        = require('express-session');
 const methodOverride = require('method-override');
-const PORT = process.env.PORT || 9000;
 
 
 require('./db/db')
@@ -40,6 +39,6 @@ app.use('/search', searchController)
 app.use('/auth', authController);
 
 
-app.listen(PORT, () => {
+app.listen(9000, () => {
 	console.log("I'm listening on port 9000")
-})
+});
