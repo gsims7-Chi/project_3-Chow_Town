@@ -69,15 +69,12 @@ router.get('/:id', async(req, res) => {
 			foundReviews: foundReviews
 		}
 		res.json(data)
-}catch(err){
-	console.log(err, ' this is an error in the show route of the search controller');
-	res.json(err)
+	}catch(err){
+		console.log(err, ' this is an error in the show route of the search controller');
+		res.json(err)
 }
 
-	// show route for a particular restaurant
-		// get restaurant data from zomato using zid --- ajax call
-		// get reviews for this resaurant from database -- mongoose query
-		// build a JSON response including both of these things
+
 
 })
 
