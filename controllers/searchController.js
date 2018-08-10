@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
 	try {
 		const City = req.body.city
 		const foundCity = await superagent('https://developers.zomato.com/api/v2.1/locations?query=' + City)
-		.set('user-key', '7250981833e230c0e52b1280f427f37b ')
+		.set('user-key', '75694589a46d1003747fa22c350d5e2c')
 		console.log('-------------------RESPONSE----------------------')
 		console.log('-------------------RESPONSE----------------------')
 
@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
 		const entityType = foundCity.body.location_suggestions[0].entity_type
 
 		const foundSearch = await superagent(`https://developers.zomato.com/api/v2.1/search?entity_id=${entityId}&entity_type=${entityType}`)
-		.set('user-key', '7250981833e230c0e52b1280f427f37b ')
+		.set('user-key', '75694589a46d1003747fa22c350d5e2c')
 		console.log('--------------Search---------------')
 		console.log(foundSearch.body, 'this is foundSearch')
 
@@ -60,7 +60,7 @@ router.get('/:id', async(req, res) => {
 	try{
 		const resId = req.params.id
 		const showRestaurant = await superagent(`https://developers.zomato.com/api/v2.1/restaurant?res_id=${resId}`)
-		.set('user-key', '7250981833e230c0e52b1280f427f37b ');
+		.set('user-key', '75694589a46d1003747fa22c350d5e2c');
 		const foundReviews = await Review.find({'resId': req.params.id})
 		console.log(showRestaurant, 'this is resturaunts');
 		console.log(foundReviews, ' this is the reviews');
